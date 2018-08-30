@@ -13,8 +13,9 @@ amd64, arm32v6, arm64v8
 ```
 docker run -d \
   --name frontail-openhab \ 
-  -p 9001:9001
-  -v /opt/openhab/userdate/logs:/openhab/userdata/logs welteki/frontial-openhab:latest
+  -p 9001:9001 \
+  -v /opt/openhab/userdate/logs:/openhab/userdata/logs \
+  welteki/frontial-openhab:latest
 ```
 
 ## Remark:
