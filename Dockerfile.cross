@@ -17,7 +17,6 @@ RUN wget      -O /usr/lib/node_modules/frontail/preset/openhab.json \
               https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-theme.css
 
 RUN mkdir -p /openhab/userdata/logs
-VOLUME /openhab/userdata/logs
 
 EXPOSE 9001
 CMD frontail \
