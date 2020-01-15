@@ -4,13 +4,15 @@ LABEL maintainer="Han Verstraete <welteki@pm.me>" \
       version="2.0" \
       description="openHAB log viewer"
 
+RUN apk add --no-cache wget
+
 RUN mkdir -p /openhab/userdata/logs
 
 RUN npm install frontail@4.8.0 -g --production --unsafe-perm
 
-RUN wget      -O /usr/lib/node_modules/frontail/preset/openhab.json \
+RUN wget      -O /usr/local/lib/node_modules/frontail/preset/openhab.json \
               https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-preset.json \
-    && wget   -O /usr/lib/node_modules/frontail/web/assets/styles/openhab.css \
+    && wget   -O /usr/local/lib/node_modules/frontail/web/assets/styles/openhab.css \
               https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-theme.css
 
 EXPOSE 9001
