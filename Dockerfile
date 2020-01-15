@@ -1,22 +1,17 @@
-FROM holgerimbery/node:__BASEIMAGE_ARCH__
-ARG ARCH=__BASEIMAGE_ARCH__
+FROM node:10.16.0-alpine
 
-LABEL maintainer="Han Verstraete <welteki@outlook.com>" \
-      version="1.0" \
+LABEL maintainer="Han Verstraete <welteki@pm.me>" \
+      version="2.0" \
       description="openHAB log viewer"
 
-RUN apt-get       update \
-    && apt-get    upgrade -y \
-    && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /openhab/userdata/logs
 
-RUN npm install frontail@4.2.2 -g --production --unsafe-perm
+RUN npm install frontail@4.8.0 -g --production --unsafe-perm
 
 RUN wget      -O /usr/lib/node_modules/frontail/preset/openhab.json \
               https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-preset.json \
     && wget   -O /usr/lib/node_modules/frontail/web/assets/styles/openhab.css \
               https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-theme.css
-
-RUN mkdir -p /openhab/userdata/logs
 
 EXPOSE 9001
 CMD frontail \
@@ -26,4 +21,4 @@ CMD frontail \
     -l 2000 \
     -n 200 \
     /openhab/userdata/logs/events.log \
-    /openhab/userdata/logs/openhab.log    
+    /openhab/userdata/logs/openhab.log
