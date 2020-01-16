@@ -18,7 +18,7 @@ RUN wget      -O /usr/local/lib/node_modules/frontail/preset/openhab.json \
 EXPOSE 9001
 CMD frontail \
     --ui-highlight \
-    --ui-highlight-preset /usr/lib/node_modules/frontail/preset/openhab.json \
+    --ui-highlight-preset /usr/local/lib/node_modules/frontail/preset/openhab.json \
     -t openhab \
     -l 2000 \
     -n 200 \
