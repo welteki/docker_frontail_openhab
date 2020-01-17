@@ -12,7 +12,7 @@ echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin &> /de
 docker buildx build \
     --progress plain \
     --platform=linux/amd64,linux/386,linux/arm/v7,linux/arm/v6,linux/arm64/v8 \
-    --build-arg FRONTAIL_VERSION=$FRONTAIL_VERSION
+    --build-arg FRONTAIL_VERSION=$FRONTAIL_VERSION \
     -t $REPO/$IMAGE_NAME:$FRONTAIL_VERSION \
     -t $REPO/$IMAGE_NAME:latest \
     --push \
