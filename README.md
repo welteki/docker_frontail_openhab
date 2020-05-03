@@ -12,7 +12,7 @@ docker run -d \
   --name frontail-openhab \
   -p 9001:9001 \
   -v /opt/openhab/userdate/logs:/var/log/openhab2:ro \
-  welteki/frontial-openhab:latest
+  welteki/frontail-openhab:latest
 ```
 
 ## License
