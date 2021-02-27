@@ -34,13 +34,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          build-args:
-            - FRONTAIL_VERSION=${{ env.FRONTAIL_VERSION }}
+          build-args: FRONTAIL_VERSION=${{ env.FRONTAIL_VERSION }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: ${{ github.event_name != 'pull_request' }}
-          tags:
-            - welteki/frontail-openhab:latest
-            - welteki/frontail-openhab:frontail${{ env. FRONTAIL_VERSION }}
+          tags: welteki/frontail-openhab:latest,welteki/frontail-openhab:frontail${{ env.FRONTAIL_VERSION }}
 
       - name: Update repo description
         if: github.event_name != 'pull_request'
