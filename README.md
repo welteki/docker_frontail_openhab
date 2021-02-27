@@ -11,7 +11,7 @@ Docker image to view your openHAB logs. Runs frontial to stream logs to the brow
 docker run -d \
   --name frontail-openhab \
   -p 9001:9001 \
-  -v /opt/openhab/userdate/logs:/var/log/openhab2:ro \
+  -v /opt/openhab/userdata/logs:/var/log/openhab2:ro \
   welteki/frontail-openhab:latest
 ```
 
