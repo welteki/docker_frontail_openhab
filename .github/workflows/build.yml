@@ -35,7 +35,7 @@ jobs:
         with:
           context: .
           build-args:
-            FRONTAIL_VERSION: ${{ env.FRONTAIL_VERSION }}
+            - FRONTAIL_VERSION=${{ env.FRONTAIL_VERSION }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: ${{ github.event_name != 'pull_request' }}
           tags:
