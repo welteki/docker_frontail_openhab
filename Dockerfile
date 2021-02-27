@@ -3,28 +3,38 @@ FROM node:10.16.0-alpine
 ARG FRONTAIL_VERSION
 
 LABEL maintainer="Han Verstraete <welteki@pm.me>" \
-      version="2.0" \
-      description="openHAB log viewer"
+    description="openHAB log viewer"
 
 RUN apk add --no-cache wget
 
-RUN mkdir -p /openhab/userdata
-RUN mkdir -p /var/log/openhab2
-RUN ln -s /var/log/openhab2 /openhab/userdata/logs
-
 RUN npm install frontail@$FRONTAIL_VERSION -g --production --unsafe-perm
 
-RUN wget      -O /usr/local/lib/node_modules/frontail/preset/openhab.json \
-              https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-preset.json \
-    && wget   -O /usr/local/lib/node_modules/frontail/web/assets/styles/openhab.css \
-              https://raw.githubusercontent.com/openhab/openhabian/master/includes/frontail-theme.css
+RUN FRONTAIL_BASE="/usr/local/lib/node_modules/frontail" \
+    && wget     -O ${FRONTAIL_BASE}/preset/openhab.json \
+    https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/frontail-preset.json \
+    && wget     -O ${FRONTAIL_BASE}/preset/openhab_dark.json \
+    https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/frontail-preset_dark.json \
+    && wget     -O ${FRONTAIL_BASE}/web/index.html \
+    https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/index.html \
+    && wget     -O ${FRONTAIL_BASE}/web/assets/styles/bootstrap.min.css \
+    https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/bootstrap.min.css \
+    && wget     -O ${FRONTAIL_BASE}/web/assets/styles/openhab.css \
+    https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/frontail-theme.css \
+    && wget     -O ${FRONTAIL_BASE}/web/assets/styles/openhab_dark.css \
+    https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/frontail-theme_dark.css
+
+RUN mkdir -p /openhab/userdata
+RUN ln -s /openhab/userdata/logs /var/log/openhab
+
+ENV FRONTAIL_THEME="openhab"
 
 EXPOSE 9001
 CMD frontail \
+    --disable-usage-stats \
     --ui-highlight \
-    --ui-highlight-preset /usr/local/lib/node_modules/frontail/preset/openhab.json \
-    -t openhab \
+    --ui-highlight-preset /usr/local/lib/node_modules/frontail/preset/${FRONTAIL_THEME}.json \
+    --theme ${FRONTAIL_THEME}\
     -l 2000 \
     -n 200 \
-    /var/log/openhab2/events.log \
-    /var/log/openhab2/openhab.log
+    /var/log/openhab/events.log \
+    /var/log/openhab/openhab.log
