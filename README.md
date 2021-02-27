@@ -31,7 +31,7 @@ docker run -d \
   welteki/frontail-openhab:latest
 ```
 
-#### Enabeling dark mode
+#### Enabling dark mode
 
 The dark theme can be enabled by setting the `FRONTAIL_THEME` environment variable. To do this just add `-e FRONTAIL_THEME=openhab_dark` to your docker run arguments.
 
