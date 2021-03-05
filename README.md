@@ -35,6 +35,10 @@ docker run -d \
 
 The dark theme can be enabled by setting the `FRONTAIL_THEME` environment variable. To do this just add `-e FRONTAIL_THEME=openhab_dark` to your docker run arguments.
 
+#### Apply additional options
+
+To pass additional options to frontail the environment variable `FRONTAIL_OPTS` can be set. For example, when running behind a reverse proxy add `-e "FRONTAIL_OPTS=--url-path /frontail"`.
+
 ## License
 
 MIT (c) 2018 Han Verstraete https://github.com/welteki

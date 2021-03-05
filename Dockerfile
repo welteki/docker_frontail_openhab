@@ -36,5 +36,6 @@ CMD frontail \
     --theme ${FRONTAIL_THEME}\
     -l 2000 \
     -n 200 \
+    ${FRONTAIL_OPTS} \
     /var/log/openhab/events.log \
     /var/log/openhab/openhab.log
