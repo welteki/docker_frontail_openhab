@@ -14,6 +14,8 @@ RUN FRONTAIL_BASE="/usr/local/lib/node_modules/frontail" \
     https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/frontail-preset.json \
     && wget     -O ${FRONTAIL_BASE}/preset/openhab_dark.json \
     https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/frontail-preset_dark.json \
+    && wget     -O ${FRONTAIL_BASE}/preset/openhab_AEM.json \
+    https://github.com/Interstellar0verdrive/frontail_AEM/blob/fa17953935834e96d5e8a6f67f7879d8cf0d745c/preset/openhab_AEM.json \
     && wget     -O ${FRONTAIL_BASE}/web/index.html \
     https://raw.githubusercontent.com/openhab/openhabian/openHAB3/includes/frontail/index.html \
     && wget     -O ${FRONTAIL_BASE}/web/assets/styles/bootstrap.min.css \
